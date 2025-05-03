@@ -12,16 +12,16 @@ import {
 } from "recharts";
 
 const portfolioData = [
-  { date: "May 1", value: 12400 },
-  { date: "May 2", value: 12800 },
-  { date: "May 3", value: 12750 },
-  { date: "May 4", value: 13100 },
-  { date: "May 5", value: 13400 },
-  { date: "May 6", value: 13200 },
-  { date: "May 7", value: 13500 },
-  { date: "May 8", value: 13800 },
-  { date: "May 9", value: 14200 },
-  { date: "May 10", value: 14500 },
+  { date: "May 1", value: 145000 },
+  { date: "May 2", value: 146500 },
+  { date: "May 3", value: 146000 },
+  { date: "May 4", value: 147000 },
+  { date: "May 5", value: 147500 },
+  { date: "May 6", value: 147200 },
+  { date: "May 7", value: 148000 },
+  { date: "May 8", value: 149000 },
+  { date: "May 9", value: 149800 },
+  { date: "May 10", value: 150500 },
 ];
 
 const CustomTooltip = ({ active, payload, label }: any) => {
@@ -30,7 +30,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
       <div className="rounded-md border border-border bg-card p-2 shadow-sm">
         <p className="text-xs font-medium">{label}</p>
         <p className="text-sm font-semibold text-brand-green">
-          ${payload[0].value.toLocaleString()}
+          NGN {payload[0].value.toLocaleString()}
         </p>
       </div>
     );
@@ -46,9 +46,9 @@ const PortfolioSummary = () => {
       </CardHeader>
       <CardContent>
         <div>
-          <h3 className="text-3xl font-bold">$14,500.00</h3>
+          <h3 className="text-3xl font-bold">NGN 150,500.00</h3>
           <div className="mt-1 flex items-center">
-            <span className="text-sm font-medium text-brand-green">+$2,100.00 (16.9%)</span>
+            <span className="text-sm font-medium text-brand-green">+NGN 5,500.00 (3.8%)</span>
             <span className="ml-2 text-xs text-muted-foreground">All time</span>
           </div>
         </div>
@@ -81,11 +81,11 @@ const PortfolioSummary = () => {
                   tick={{ fontSize: 12, fill: '#94A3B8' }} 
                 />
                 <YAxis 
-                  domain={["dataMin - 500", "dataMax + 500"]} 
+                  domain={["dataMin - 2000", "dataMax + 2000"]} 
                   axisLine={false}
                   tickLine={false}
                   tick={{ fontSize: 12, fill: '#94A3B8' }}
-                  tickFormatter={(value) => `$${value}`}
+                  tickFormatter={(value) => `NGN ${value/1000}K`}
                 />
                 <Tooltip content={<CustomTooltip />} />
                 <Area

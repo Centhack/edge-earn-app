@@ -35,7 +35,7 @@ const PaymentSuccess = () => {
           <div className="absolute -right-2 top-0 text-4xl sm:text-5xl">🎺</div>
           
           <img
-            src="/public/lovable-uploads/d4bcf0d6-cb1a-4e20-b671-e36f6556c6f1.png"
+            src="/lovable-uploads/ad44e4a1-9150-460d-91e2-330c173b5d9e.png"
             alt="EarnEdge Logo"
             className="h-16 w-16 animate-bounce"
           />

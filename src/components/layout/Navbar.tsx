@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Bell, HelpCircle, Search, Settings, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import ProfileAvatar from "@/components/dashboard/ProfileAvatar";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,7 +15,7 @@ const Navbar = () => {
         {/* Logo section */}
         <Link to="/" className="flex items-center gap-2">
           <img 
-            src="/public/lovable-uploads/5351f2e7-c6b8-4837-a3c4-379bba971eb3.png" 
+            src="/lovable-uploads/ad44e4a1-9150-460d-91e2-330c173b5d9e.png" 
             alt="EarnEdge Logo" 
             className="h-9 w-9" 
           />
@@ -56,17 +57,21 @@ const Navbar = () => {
           <Button variant="ghost" size="icon">
             <Settings className="h-5 w-5" />
           </Button>
+          
+          <ProfileAvatar />
         </div>
 
         {/* Mobile menu button */}
-        <Button 
-          variant="ghost" 
-          size="icon" 
-          className="md:hidden"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </Button>
+        <div className="flex items-center space-x-2 md:hidden">
+          <ProfileAvatar />
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </Button>
+        </div>
       </div>
 
       {/* Mobile menu */}
