@@ -6,28 +6,28 @@ import { ArrowUpRight, ArrowDownRight } from "lucide-react";
 const marketIndices = [
   { 
     name: "S&P 500",
-    value: 5,234.10,
+    value: 5234.10,
     change: 34.56,
     changePercent: 0.67,
     trending: true
   },
   { 
     name: "Nasdaq",
-    value: 16,789.23,
+    value: 16789.23,
     change: 145.78,
     changePercent: 0.88,
     trending: true
   },
   { 
     name: "Dow Jones",
-    value: 38,456.67,
+    value: 38456.67,
     change: -89.12,
     changePercent: -0.23,
     trending: false
   },
   { 
     name: "Russell 2000",
-    value: 2,134.45,
+    value: 2134.45,
     change: 12.34,
     changePercent: 0.59,
     trending: false
