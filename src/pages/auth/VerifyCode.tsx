@@ -33,9 +33,9 @@ const VerifyCode = () => {
       <div className="w-full max-w-md space-y-6 rounded-lg border border-brand-green/20 bg-secondary/20 p-8 backdrop-blur-sm">
         <div className="flex flex-col items-center space-y-2 text-center">
           <img
-            src="/public/lovable-uploads/5351f2e7-c6b8-4837-a3c4-379bba971eb3.png"
+            src="/public/lovable-uploads/d4bcf0d6-cb1a-4e20-b671-e36f6556c6f1.png"
             alt="EarnEdge Logo"
-            className="h-16 w-16"
+            className="h-20 w-auto mb-4"
           />
           <h1 className="text-3xl font-bold">Enter EARN ID</h1>
           <p className="text-sm text-muted-foreground">
