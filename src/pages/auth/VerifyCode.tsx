@@ -2,16 +2,21 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { 
-  InputOTP, 
-  InputOTPGroup, 
-  InputOTPSlot 
-} from "@/components/ui/input-otp";
 import { toast } from "@/components/ui/sonner";
 
 const VerifyCode = () => {
   const [verificationCode, setVerificationCode] = useState("");
   const savedCode = localStorage.getItem("earnedge_code");
+
+  const handleNumberClick = (number: string) => {
+    if (verificationCode.length < 6) {
+      setVerificationCode(prev => prev + number);
+    }
+  };
+
+  const handleBackspace = () => {
+    setVerificationCode(prev => prev.slice(0, -1));
+  };
 
   const handleVerification = () => {
     // In a real app, we would verify against a backend
@@ -43,40 +48,73 @@ const VerifyCode = () => {
           </p>
         </div>
         
-        <div className="space-y-4">
-          <div className="flex flex-col items-center space-y-4">
-            <InputOTP 
-              maxLength={6}
-              value={verificationCode}
-              onChange={setVerificationCode}
-              render={({ slots }) => (
-                <InputOTPGroup className="gap-2">
-                  {slots.map((slot, index) => (
-                    <InputOTPSlot 
-                      key={index} 
-                      index={index} 
-                      className="h-14 w-12 border-brand-green/40 text-lg"
-                    />
-                  ))}
-                </InputOTPGroup>
-              )}
-            />
-            
-            <div className="mt-8 flex w-full flex-col space-y-4">
-              <Button
-                onClick={handleVerification}
-                className="w-full bg-brand-green text-white hover:bg-brand-lightGreen"
-                disabled={verificationCode.length !== 6}
-              >
-                Verify Code
-              </Button>
-              
-              <Button asChild variant="outline">
-                <Link to="/buy-earn-id" className="w-full">
-                  BUY EARN ID
-                </Link>
-              </Button>
+        <div className="space-y-6">
+          {/* Display the entered code */}
+          <div className="flex justify-center">
+            <div className="flex gap-2">
+              {[...Array(6)].map((_, index) => (
+                <div 
+                  key={index}
+                  className={`flex h-14 w-12 items-center justify-center rounded-md border ${
+                    verificationCode[index] ? "border-brand-green bg-brand-green/10" : "border-brand-green/40"
+                  } text-2xl font-bold`}
+                >
+                  {verificationCode[index] || ""}
+                </div>
+              ))}
             </div>
+          </div>
+          
+          {/* Number pad */}
+          <div className="grid grid-cols-3 gap-3">
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((number) => (
+              <Button
+                key={number}
+                onClick={() => handleNumberClick(number.toString())}
+                variant="outline"
+                className="h-14 text-xl font-bold hover:bg-brand-green/10"
+              >
+                {number}
+              </Button>
+            ))}
+            <Button
+              onClick={handleBackspace}
+              variant="outline"
+              className="h-14 text-xl font-bold hover:bg-destructive/10"
+            >
+              ←
+            </Button>
+            <Button
+              onClick={() => handleNumberClick("0")}
+              variant="outline"
+              className="h-14 text-xl font-bold hover:bg-brand-green/10"
+            >
+              0
+            </Button>
+            <Button
+              disabled={verificationCode.length !== 6}
+              onClick={handleVerification}
+              variant="outline"
+              className="h-14 text-xl font-bold hover:bg-brand-green/10 disabled:opacity-50"
+            >
+              ✓
+            </Button>
+          </div>
+          
+          <div className="flex flex-col space-y-4 mt-6">
+            <Button
+              onClick={handleVerification}
+              className="w-full bg-brand-green text-white hover:bg-brand-lightGreen"
+              disabled={verificationCode.length !== 6}
+            >
+              Verify Code
+            </Button>
+            
+            <Button asChild variant="outline">
+              <Link to="/buy-earn-id" className="w-full">
+                BUY EARN ID
+              </Link>
+            </Button>
           </div>
         </div>
       </div>
