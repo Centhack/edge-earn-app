@@ -1,10 +1,10 @@
-
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Loader2 } from "lucide-react";
 
 const PaymentVerification = () => {
-  const [countdown, setCountdown] = useState(8);
+  // Keep countdown state but don't display it visibly
+  const [countdown, setCountdown] = useState(13);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -32,6 +32,9 @@ const PaymentVerification = () => {
             src="/lovable-uploads/ad44e4a1-9150-460d-91e2-330c173b5d9e.png"
             alt="EarnEdge Logo"
             className="h-20 w-auto"
+            style={{
+              animation: "floatLogo 4s ease-in-out infinite"
+            }}
           />
         </div>
         
@@ -40,11 +43,9 @@ const PaymentVerification = () => {
             <Loader2 className="h-12 w-12 animate-spin text-brand-green" />
             <h1 className="text-xl font-bold text-white">Verifying Payment...</h1>
             <p className="text-lg text-gray-300">
-              Please wait while we process your payment
+              Dear valid user, hold for few moment, while we proceed and validiate your payment
             </p>
-            <div className="mt-4 rounded-full bg-brand-green/20 px-4 py-2 text-lg font-bold text-brand-green">
-              {countdown} seconds remaining
-            </div>
+            {/* Countdown not visible but still working */}
           </div>
         </div>
       </div>

@@ -48,7 +48,7 @@ const VerifyCode = () => {
           </p>
         </div>
         
-        <div className="space-y-6 mt-10">
+        <div className="space-y-6 mt-14">
           {/* Display the entered code (masked with asterisks) */}
           <div className="flex justify-center">
             <div className="flex gap-2">
@@ -65,8 +65,8 @@ const VerifyCode = () => {
             </div>
           </div>
           
-          {/* Number pad - pushed down */}
-          <div className="grid grid-cols-3 gap-3 pt-10">
+          {/* Number pad - pushed down more */}
+          <div className="grid grid-cols-3 gap-3 pt-16">
             {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((number) => (
               <Button
                 key={number}
@@ -101,7 +101,7 @@ const VerifyCode = () => {
             </Button>
           </div>
           
-          <div className="flex flex-col space-y-4 mt-8">
+          <div className="flex flex-col space-y-4 mt-16">
             <Button
               onClick={handleVerification}
               className="w-full bg-brand-green text-white hover:bg-brand-lightGreen"
@@ -110,7 +110,7 @@ const VerifyCode = () => {
               Verify Code
             </Button>
             
-            <Button asChild variant="outline" className="mt-4">
+            <Button asChild variant="outline" className="mt-6">
               <Link to="/buy-earn-id" className="w-full">
                 BUY EARN ID
               </Link>
