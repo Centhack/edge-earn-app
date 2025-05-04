@@ -49,17 +49,17 @@ const VerifyCode = () => {
         </div>
         
         <div className="space-y-6">
-          {/* Display the entered code */}
+          {/* Display the entered code (masked with asterisks) */}
           <div className="flex justify-center">
             <div className="flex gap-2">
               {[...Array(6)].map((_, index) => (
                 <div 
                   key={index}
-                  className={`flex h-14 w-12 items-center justify-center rounded-md border ${
+                  className={`flex h-10 w-10 items-center justify-center rounded-md border ${
                     verificationCode[index] ? "border-brand-green bg-brand-green/10" : "border-brand-green/40"
-                  } text-2xl font-bold`}
+                  } text-xl font-bold`}
                 >
-                  {verificationCode[index] || ""}
+                  {verificationCode[index] ? "*" : ""}
                 </div>
               ))}
             </div>

@@ -30,7 +30,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
       <div className="rounded-md border border-border bg-card p-2 shadow-sm">
         <p className="text-xs font-medium">{label}</p>
         <p className="text-sm font-semibold text-brand-green">
-          NGN {payload[0].value.toLocaleString()}
+          ₦ {payload[0].value.toLocaleString()}
         </p>
       </div>
     );
@@ -46,9 +46,9 @@ const PortfolioSummary = () => {
       </CardHeader>
       <CardContent>
         <div>
-          <h3 className="text-3xl font-bold">NGN 150,500.00</h3>
+          <h3 className="text-3xl font-bold">₦ 150,500.00</h3>
           <div className="mt-1 flex items-center">
-            <span className="text-sm font-medium text-brand-green">+NGN 5,500.00 (3.8%)</span>
+            <span className="text-sm font-medium text-brand-green">+₦ 5,500.00 (3.8%)</span>
             <span className="ml-2 text-xs text-muted-foreground">All time</span>
           </div>
         </div>
@@ -85,7 +85,7 @@ const PortfolioSummary = () => {
                   axisLine={false}
                   tickLine={false}
                   tick={{ fontSize: 12, fill: '#94A3B8' }}
-                  tickFormatter={(value) => `NGN ${value/1000}K`}
+                  tickFormatter={(value) => `₦ ${value/1000}K`}
                 />
                 <Tooltip content={<CustomTooltip />} />
                 <Area

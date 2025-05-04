@@ -14,6 +14,7 @@ import SignIn from "./pages/auth/SignIn";
 import VerifyCode from "./pages/auth/VerifyCode";
 import BuyEarnId from "./pages/auth/BuyEarnId";
 import PaymentInfo from "./pages/auth/PaymentInfo";
+import PaymentVerification from "./pages/auth/PaymentVerification";
 import PaymentSuccess from "./pages/auth/PaymentSuccess";
 
 const queryClient = new QueryClient();
@@ -31,6 +32,7 @@ const App = () => (
           <Route path="/verify-code" element={<VerifyCode />} />
           <Route path="/buy-earn-id" element={<BuyEarnId />} />
           <Route path="/payment-info" element={<PaymentInfo />} />
+          <Route path="/payment-verification" element={<PaymentVerification />} />
           <Route path="/payment-success" element={<PaymentSuccess />} />
           <Route path="/landing" element={<Index />} />
           <Route path="/dashboard" element={<Dashboard />} />

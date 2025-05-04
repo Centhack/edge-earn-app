@@ -1,34 +1,49 @@
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Copy } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Card } from "@/components/ui/card";
 import { toast } from "@/components/ui/sonner";
+import { cn } from "@/lib/utils";
 
 const PaymentInfo = () => {
   const navigate = useNavigate();
-  const [copied, setCopied] = useState<string | null>(null);
+  const [cardNumber, setCardNumber] = useState("");
+  const [expiryDate, setExpiryDate] = useState("");
+  const [cvv, setCvv] = useState("");
+  const [name, setName] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const paymentDetails = {
-    amount: "NGN 7,100",
-    accountNumber: "0305286778",
-    bankName: "SMARTCASH PSB",
-    accountName: "OBIAGERI OBIAJUNWA",
+  const handleCardNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // Format card number with spaces after every 4 digits
+    const value = e.target.value.replace(/\D/g, '').substring(0, 16);
+    const formattedValue = value.replace(/(\d{4})/g, '$1 ').trim();
+    setCardNumber(formattedValue);
   };
 
-  const copyToClipboard = (text: string, field: string) => {
-    navigator.clipboard.writeText(text);
-    setCopied(field);
-    toast.success(`${field} copied to clipboard!`);
+  const handleExpiryDate = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // Format expiry date as MM/YY
+    let value = e.target.value.replace(/\D/g, '').substring(0, 4);
+    if (value.length > 2) {
+      value = value.substring(0, 2) + '/' + value.substring(2);
+    }
+    setExpiryDate(value);
+  };
+
+  const handleCvv = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCvv(e.target.value.replace(/\D/g, '').substring(0, 3));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
     
+    // Simulate payment processing
     setTimeout(() => {
-      setCopied(null);
-    }, 2000);
-  };
-
-  const handlePaymentMade = () => {
-    // Show loading state for 3 seconds before navigating
-    navigate("/payment-success");
+      setIsLoading(false);
+      navigate("/payment-verification");
+    }, 1500);
   };
 
   return (
@@ -38,82 +53,77 @@ const PaymentInfo = () => {
           <img
             src="/lovable-uploads/ad44e4a1-9150-460d-91e2-330c173b5d9e.png"
             alt="EarnEdge Logo"
-            className="h-16 w-16"
+            className="h-20 w-auto mb-4"
           />
-          <h1 className="text-2xl font-bold">Payment Information</h1>
+          <h1 className="text-3xl font-bold">Payment Information</h1>
           <p className="text-sm text-muted-foreground">
-            In order for you to get your EARN ID kindly make a payment of NGN 7,100 to the account details below
+            Enter your payment details below to buy EARN ID
           </p>
         </div>
         
-        <div className="space-y-4 rounded-md border border-border p-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-xs text-muted-foreground">AMOUNT</p>
-              <p className="font-medium">{paymentDetails.amount}</p>
+        <Card className="border-none bg-transparent shadow-none">
+          <form onSubmit={handleSubmit} className="grid gap-4">
+            <div className="grid gap-2">
+              <Label htmlFor="name">Name on Card</Label>
+              <Input
+                id="name"
+                placeholder="John Doe"
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
             </div>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => copyToClipboard(paymentDetails.amount, "Amount")}
-              className="h-8 w-8"
-            >
-              <Copy className={copied === "Amount" ? "text-brand-green" : ""} size={16} />
-            </Button>
-          </div>
-          
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-xs text-muted-foreground">ACCOUNT NUMBER</p>
-              <p className="font-medium">{paymentDetails.accountNumber}</p>
+            
+            <div className="grid gap-2">
+              <Label htmlFor="cardNumber">Card Number</Label>
+              <Input
+                id="cardNumber"
+                placeholder="XXXX XXXX XXXX XXXX"
+                value={cardNumber}
+                onChange={handleCardNumber}
+                maxLength={19}
+                required
+              />
             </div>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => copyToClipboard(paymentDetails.accountNumber, "Account Number")}
-              className="h-8 w-8"
-            >
-              <Copy className={copied === "Account Number" ? "text-brand-green" : ""} size={16} />
-            </Button>
-          </div>
-          
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-xs text-muted-foreground">BANK NAME</p>
-              <p className="font-medium">{paymentDetails.bankName}</p>
+            
+            <div className="grid grid-cols-2 gap-4">
+              <div className="grid gap-2">
+                <Label htmlFor="expiryDate">Expiry Date</Label>
+                <Input
+                  id="expiryDate"
+                  placeholder="MM/YY"
+                  value={expiryDate}
+                  onChange={handleExpiryDate}
+                  maxLength={5}
+                  required
+                />
+              </div>
+              
+              <div className="grid gap-2">
+                <Label htmlFor="cvv">CVV</Label>
+                <Input
+                  id="cvv"
+                  placeholder="XXX"
+                  value={cvv}
+                  onChange={handleCvv}
+                  maxLength={3}
+                  required
+                />
+              </div>
             </div>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => copyToClipboard(paymentDetails.bankName, "Bank Name")}
-              className="h-8 w-8"
-            >
-              <Copy className={copied === "Bank Name" ? "text-brand-green" : ""} size={16} />
+            
+            <Button disabled={isLoading} className="w-full bg-brand-green text-white hover:bg-brand-lightGreen">
+              {isLoading ? (
+                <>
+                  Processing...
+                </>
+              ) : (
+                "Confirm Payment"
+              )}
             </Button>
-          </div>
-          
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-xs text-muted-foreground">ACCOUNT NAME</p>
-              <p className="font-medium">{paymentDetails.accountName}</p>
-            </div>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => copyToClipboard(paymentDetails.accountName, "Account Name")}
-              className="h-8 w-8"
-            >
-              <Copy className={copied === "Account Name" ? "text-brand-green" : ""} size={16} />
-            </Button>
-          </div>
-        </div>
-        
-        <Button
-          onClick={handlePaymentMade}
-          className="w-full bg-brand-green text-white hover:bg-brand-lightGreen"
-        >
-          PAYMENT MADE
-        </Button>
+          </form>
+        </Card>
       </div>
     </div>
   );
