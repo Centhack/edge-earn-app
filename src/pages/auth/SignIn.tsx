@@ -54,12 +54,17 @@ const SignIn = () => {
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-navy p-4">
       <div className="w-full max-w-md space-y-6 rounded-lg border border-brand-green/20 bg-secondary/20 p-8 backdrop-blur-sm">
-        <div className="flex flex-col items-center space-y-2 text-center">
-          <img
-            src="/lovable-uploads/ad44e4a1-9150-460d-91e2-330c173b5d9e.png"
-            alt="EarnEdge Logo"
-            className="h-20 w-auto mb-4"
-          />
+        <div className="flex flex-col items-center space-y-2 text-center mb-8">
+          <div className="w-full overflow-hidden">
+            <img
+              src="/lovable-uploads/ad44e4a1-9150-460d-91e2-330c173b5d9e.png"
+              alt="EarnEdge Logo"
+              className="h-20 w-auto mx-auto"
+              style={{
+                animation: "floatLogo 4s ease-in-out infinite"
+              }}
+            />
+          </div>
           <h1 className="text-3xl font-bold">Sign In</h1>
           <p className="text-sm text-muted-foreground">
             Welcome back! Enter your credentials to access your account

@@ -48,14 +48,14 @@ const VerifyCode = () => {
           </p>
         </div>
         
-        <div className="space-y-6">
+        <div className="space-y-6 mt-10">
           {/* Display the entered code (masked with asterisks) */}
           <div className="flex justify-center">
             <div className="flex gap-2">
               {[...Array(6)].map((_, index) => (
                 <div 
                   key={index}
-                  className={`flex h-10 w-10 items-center justify-center rounded-md border ${
+                  className={`flex h-8 w-8 items-center justify-center rounded-md border ${
                     verificationCode[index] ? "border-brand-green bg-brand-green/10" : "border-brand-green/40"
                   } text-xl font-bold`}
                 >
@@ -65,8 +65,8 @@ const VerifyCode = () => {
             </div>
           </div>
           
-          {/* Number pad */}
-          <div className="grid grid-cols-3 gap-3">
+          {/* Number pad - pushed down */}
+          <div className="grid grid-cols-3 gap-3 pt-10">
             {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((number) => (
               <Button
                 key={number}
@@ -101,7 +101,7 @@ const VerifyCode = () => {
             </Button>
           </div>
           
-          <div className="flex flex-col space-y-4 mt-6">
+          <div className="flex flex-col space-y-4 mt-8">
             <Button
               onClick={handleVerification}
               className="w-full bg-brand-green text-white hover:bg-brand-lightGreen"
@@ -110,7 +110,7 @@ const VerifyCode = () => {
               Verify Code
             </Button>
             
-            <Button asChild variant="outline">
+            <Button asChild variant="outline" className="mt-4">
               <Link to="/buy-earn-id" className="w-full">
                 BUY EARN ID
               </Link>
