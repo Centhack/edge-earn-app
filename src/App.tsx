@@ -16,6 +16,10 @@ import BuyEarnId from "./pages/auth/BuyEarnId";
 import PaymentInfo from "./pages/auth/PaymentInfo";
 import PaymentVerification from "./pages/auth/PaymentVerification";
 import PaymentSuccess from "./pages/auth/PaymentSuccess";
+import Withdrawal from "./pages/Withdrawal";
+import VerifyEarnId from "./pages/VerifyEarnId";
+import WithdrawalSuccess from "./pages/WithdrawalSuccess";
+import TransactionHistory from "./pages/TransactionHistory";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +42,10 @@ const App = () => (
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/channel" element={<EarnEdgeChannel />} />
           <Route path="/news" element={<News />} />
+          <Route path="/withdrawal" element={<Withdrawal />} />
+          <Route path="/verify-earn-id" element={<VerifyEarnId />} />
+          <Route path="/withdrawal-success" element={<WithdrawalSuccess />} />
+          <Route path="/transaction-history" element={<TransactionHistory />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
