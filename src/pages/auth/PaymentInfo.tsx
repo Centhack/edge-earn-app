@@ -3,12 +3,19 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { toast } from "@/components/ui/sonner";
+import { Copy } from "lucide-react";
 
 const PaymentInfo = () => {
   const navigate = useNavigate();
 
   const handlePaymentMade = () => {
     navigate("/payment-verification");
+  };
+
+  const handleCopy = (text: string, label: string) => {
+    navigator.clipboard.writeText(text);
+    toast.success(`${label} copied to clipboard!`);
   };
 
   return (
@@ -21,7 +28,7 @@ const PaymentInfo = () => {
               alt="EarnEdge Logo"
               className="h-20 w-auto mx-auto"
               style={{
-                animation: "floatLogo 4s ease-in-out infinite"
+                animation: "floatHorizontal 4s ease-in-out infinite"
               }}
             />
           </div>
@@ -33,29 +40,45 @@ const PaymentInfo = () => {
         
         <Card className="border border-brand-green/30 bg-brand-green/5 p-6 mt-6">
           <div className="space-y-4">
-            <div className="grid grid-cols-2 gap-2">
-              <div className="text-muted-foreground">Bank Name:</div>
-              <div className="font-medium text-right">First Bank</div>
+            <div className="grid grid-cols-3 gap-2 items-center">
+              <div className="text-muted-foreground col-span-1">Amount:</div>
+              <div className="font-medium text-brand-green text-right col-span-1">₦ 7,100.00</div>
+              <div className="col-span-1"></div>
             </div>
             
-            <div className="grid grid-cols-2 gap-2">
-              <div className="text-muted-foreground">Account Number:</div>
-              <div className="font-medium text-right">3141258976</div>
+            <div className="grid grid-cols-3 gap-2 items-center">
+              <div className="text-muted-foreground col-span-1">Bank Name:</div>
+              <div className="font-medium text-right col-span-1">First Bank</div>
+              <div className="flex justify-end col-span-1">
+                <button onClick={() => handleCopy("First Bank", "Bank name")} className="text-brand-green hover:text-brand-lightGreen">
+                  <Copy className="h-4 w-4" />
+                </button>
+              </div>
             </div>
             
-            <div className="grid grid-cols-2 gap-2">
-              <div className="text-muted-foreground">Account Name:</div>
-              <div className="font-medium text-right">EarnEdge Technologies</div>
+            <div className="grid grid-cols-3 gap-2 items-center">
+              <div className="text-muted-foreground col-span-1">Account Number:</div>
+              <div className="font-medium text-right col-span-1">3141258976</div>
+              <div className="flex justify-end col-span-1">
+                <button onClick={() => handleCopy("3141258976", "Account number")} className="text-brand-green hover:text-brand-lightGreen">
+                  <Copy className="h-4 w-4" />
+                </button>
+              </div>
             </div>
             
-            <div className="grid grid-cols-2 gap-2">
-              <div className="text-muted-foreground">Amount:</div>
-              <div className="font-medium text-brand-green text-right">₦ 7,100.00</div>
+            <div className="grid grid-cols-3 gap-2 items-center">
+              <div className="text-muted-foreground col-span-1">Account Name:</div>
+              <div className="font-medium text-right col-span-1">EarnEdge Technologies</div>
+              <div className="flex justify-end col-span-1">
+                <button onClick={() => handleCopy("EarnEdge Technologies", "Account name")} className="text-brand-green hover:text-brand-lightGreen">
+                  <Copy className="h-4 w-4" />
+                </button>
+              </div>
             </div>
           </div>
         </Card>
         
-        <div className="mt-14 pt-6">
+        <div className="mt-20 pt-6">
           <Button 
             onClick={handlePaymentMade}
             className="w-full bg-brand-green text-white hover:bg-brand-lightGreen text-lg py-6"

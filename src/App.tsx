@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard";
-import Markets from "./pages/Markets";
+import EarnEdgeChannel from "./pages/Markets";
 import News from "./pages/News";
 import NotFound from "./pages/NotFound";
 import SignUp from "./pages/auth/SignUp";
@@ -36,7 +36,7 @@ const App = () => (
           <Route path="/payment-success" element={<PaymentSuccess />} />
           <Route path="/landing" element={<Index />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/markets" element={<Markets />} />
+          <Route path="/channel" element={<EarnEdgeChannel />} />
           <Route path="/news" element={<News />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
