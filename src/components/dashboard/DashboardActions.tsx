@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import {
   Banknote,
   CreditCard,
-  DollarSign,
   Wifi,
   LogOut,
   Contact,

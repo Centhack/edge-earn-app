@@ -14,7 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, ArrowLeft } from "lucide-react";
 
 const AirtimeTopup = () => {
   const navigate = useNavigate();
@@ -40,8 +40,37 @@ const AirtimeTopup = () => {
     
     // Verify the EARN ID (default code: 056281)
     if (formData.earnId === "056281") {
-      toast.success(`Successfully purchased ${formData.plan} airtime for ${formData.phoneNumber}`);
-      navigate("/dashboard");
+      // Get the plan amount (removing non-numeric characters)
+      const planValue = Number(formData.plan.replace(/[^\d]/g, ""));
+      
+      // Update balance
+      const currentBalance = Number(localStorage.getItem("earnedge_balance") || "145500");
+      if (currentBalance >= planValue) {
+        const newBalance = currentBalance - planValue;
+        localStorage.setItem("earnedge_balance", newBalance.toString());
+        
+        // Add transaction to history
+        const newTransaction = {
+          id: `TXN${Math.floor(Math.random() * 1000000000)}`,
+          type: "airtime",
+          amount: planValue.toString(),
+          date: new Date().toISOString().split('T')[0],
+          time: new Date().toTimeString().split(' ')[0],
+          status: "completed"
+        };
+        
+        const history = JSON.parse(localStorage.getItem("earnedge_transactions") || "[]");
+        history.unshift(newTransaction);
+        localStorage.setItem("earnedge_transactions", JSON.stringify(history));
+        
+        // Trigger balance update event
+        window.dispatchEvent(new Event("balance-updated"));
+        
+        toast.success(`Successfully purchased ₦${planValue} airtime for ${formData.phoneNumber}`);
+        navigate("/dashboard");
+      } else {
+        toast.error("Insufficient balance for this purchase.");
+      }
     } else {
       toast.error("Invalid EARN ID. Please try again.");
     }
@@ -51,10 +80,24 @@ const AirtimeTopup = () => {
     setShowEarnId(!showEarnId);
   };
 
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+
   return (
     <MainLayout>
       <div className="container px-4 py-8 md:px-8">
-        <h1 className="mb-6 text-2xl font-bold">Airtime Top-up</h1>
+        <div className="flex items-center mb-6">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            onClick={handleGoBack}
+            className="mr-2"
+          >
+            <ArrowLeft className="h-5 w-5" />
+          </Button>
+          <h1 className="text-2xl font-bold">Airtime Top-up</h1>
+        </div>
         
         <Card>
           <CardHeader>

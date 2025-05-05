@@ -4,6 +4,9 @@ import MainLayout from "@/components/layout/MainLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface Member {
   id: number;
@@ -14,6 +17,7 @@ interface Member {
 }
 
 const Members = () => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const [members, setMembers] = useState<Member[]>([]);
   
@@ -94,11 +98,25 @@ const Members = () => {
   const filteredMembers = members.filter(member => 
     member.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  const handleGoBack = () => {
+    navigate(-1);
+  };
   
   return (
     <MainLayout>
       <div className="container px-4 py-8 md:px-8">
-        <h1 className="mb-6 text-2xl font-bold">EarnEdge Community Members</h1>
+        <div className="flex items-center mb-6">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            onClick={handleGoBack}
+            className="mr-2"
+          >
+            <ArrowLeft className="h-5 w-5" />
+          </Button>
+          <h1 className="text-2xl font-bold">EarnEdge Community Members</h1>
+        </div>
         
         <div className="mb-6">
           <Label htmlFor="search" className="mb-2 block">Search Members</Label>

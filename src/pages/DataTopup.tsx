@@ -14,7 +14,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, ArrowLeft } from "lucide-react";
+
+// Define plan prices for easier reference
+const DATA_PLANS = {
+  "1GB": 1000,
+  "2GB": 2500,
+  "3.5GB": 4500,
+  "5GB": 6500,
+  "10GB": 12000
+};
 
 const DataTopup = () => {
   const navigate = useNavigate();
@@ -40,8 +49,38 @@ const DataTopup = () => {
     
     // Verify the EARN ID (default code: 056281)
     if (formData.earnId === "056281") {
-      toast.success(`Successfully purchased ${formData.plan} for ${formData.phoneNumber}`);
-      navigate("/dashboard");
+      // Get the plan price
+      const planKey = formData.plan.split(" ")[0]; // Extract the plan size (e.g., "1GB")
+      const planPrice = DATA_PLANS[planKey as keyof typeof DATA_PLANS] || 0;
+      
+      // Update balance
+      const currentBalance = Number(localStorage.getItem("earnedge_balance") || "145500");
+      if (currentBalance >= planPrice) {
+        const newBalance = currentBalance - planPrice;
+        localStorage.setItem("earnedge_balance", newBalance.toString());
+        
+        // Add transaction to history
+        const newTransaction = {
+          id: `TXN${Math.floor(Math.random() * 1000000000)}`,
+          type: "data",
+          amount: planPrice.toString(),
+          date: new Date().toISOString().split('T')[0],
+          time: new Date().toTimeString().split(' ')[0],
+          status: "completed"
+        };
+        
+        const history = JSON.parse(localStorage.getItem("earnedge_transactions") || "[]");
+        history.unshift(newTransaction);
+        localStorage.setItem("earnedge_transactions", JSON.stringify(history));
+        
+        // Trigger balance update event
+        window.dispatchEvent(new Event("balance-updated"));
+        
+        toast.success(`Successfully purchased ${planKey} for ${formData.phoneNumber}`);
+        navigate("/dashboard");
+      } else {
+        toast.error("Insufficient balance for this purchase.");
+      }
     } else {
       toast.error("Invalid EARN ID. Please try again.");
     }
@@ -51,10 +90,24 @@ const DataTopup = () => {
     setShowEarnId(!showEarnId);
   };
 
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+
   return (
     <MainLayout>
       <div className="container px-4 py-8 md:px-8">
-        <h1 className="mb-6 text-2xl font-bold">Data Top-up</h1>
+        <div className="flex items-center mb-6">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            onClick={handleGoBack}
+            className="mr-2"
+          >
+            <ArrowLeft className="h-5 w-5" />
+          </Button>
+          <h1 className="text-2xl font-bold">Data Top-up</h1>
+        </div>
         
         <Card>
           <CardHeader>
