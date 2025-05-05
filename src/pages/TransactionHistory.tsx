@@ -16,7 +16,7 @@ const TransactionHistory = () => {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   
   useEffect(() => {
-    // Mock transaction data
+    // Mock user transaction data (only user's own transactions)
     const mockTransactions = [
       {
         id: "TXN123456789",
@@ -24,14 +24,6 @@ const TransactionHistory = () => {
         amount: "15,000.00",
         date: "2025-05-02",
         time: "14:30:45",
-        status: "completed"
-      },
-      {
-        id: "TXN987654321",
-        type: "loan",
-        amount: "25,000.00",
-        date: "2025-05-01",
-        time: "09:15:22",
         status: "completed"
       },
       {
@@ -77,7 +69,7 @@ const TransactionHistory = () => {
         
         <Card>
           <CardHeader>
-            <CardTitle className="text-lg">Recent Transactions</CardTitle>
+            <CardTitle className="text-lg">Your Transactions</CardTitle>
           </CardHeader>
           <CardContent>
             {transactions.length > 0 ? (

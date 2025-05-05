@@ -6,7 +6,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard";
-import EarnEdgeChannel from "./pages/Markets";
 import News from "./pages/News";
 import NotFound from "./pages/NotFound";
 import SignUp from "./pages/auth/SignUp";
@@ -20,6 +19,9 @@ import Withdrawal from "./pages/Withdrawal";
 import VerifyEarnId from "./pages/VerifyEarnId";
 import WithdrawalSuccess from "./pages/WithdrawalSuccess";
 import TransactionHistory from "./pages/TransactionHistory";
+import AirtimeTopup from "./pages/AirtimeTopup";
+import DataTopup from "./pages/DataTopup";
+import Members from "./pages/Members";
 
 const queryClient = new QueryClient();
 
@@ -40,12 +42,15 @@ const App = () => (
           <Route path="/payment-success" element={<PaymentSuccess />} />
           <Route path="/landing" element={<Index />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/channel" element={<EarnEdgeChannel />} />
+          <Route path="/channel" element={<Navigate to="https://whatsapp.com/channel/0029Vb4RhUPKLaHvcM9dbc0w" replace />} />
           <Route path="/news" element={<News />} />
+          <Route path="/members" element={<Members />} />
           <Route path="/withdrawal" element={<Withdrawal />} />
           <Route path="/verify-earn-id" element={<VerifyEarnId />} />
           <Route path="/withdrawal-success" element={<WithdrawalSuccess />} />
           <Route path="/transaction-history" element={<TransactionHistory />} />
+          <Route path="/airtime-topup" element={<AirtimeTopup />} />
+          <Route path="/data-topup" element={<DataTopup />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

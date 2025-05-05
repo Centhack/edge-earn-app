@@ -9,28 +9,22 @@ import { Check } from "lucide-react";
 const WithdrawalSuccess = () => {
   const navigate = useNavigate();
   const [withdrawalData, setWithdrawalData] = useState<any>(null);
-  const [rotateAngle, setRotateAngle] = useState(0);
+  const [transactionRef] = useState(`TXN${Math.floor(Math.random() * 1000000000)}`);
+  const [timestamp] = useState(new Date());
   
   useEffect(() => {
     const data = sessionStorage.getItem("withdrawalData");
     if (data) {
       setWithdrawalData(JSON.parse(data));
     }
-    
-    // Animation for checkmark spinning
-    const interval = setInterval(() => {
-      setRotateAngle((prev) => (prev + 10) % 360);
-    }, 50);
-    
-    return () => clearInterval(interval);
   }, []);
   
   const handleBackToDashboard = () => {
     navigate("/dashboard");
   };
   
-  const formattedDate = new Date().toLocaleDateString();
-  const formattedTime = new Date().toLocaleTimeString();
+  const formattedDate = timestamp.toLocaleDateString();
+  const formattedTime = timestamp.toLocaleTimeString();
   
   return (
     <MainLayout>
@@ -38,10 +32,7 @@ const WithdrawalSuccess = () => {
         <h1 className="mb-6 text-2xl font-bold text-center">Withdrawal Successful!</h1>
         
         <div className="flex justify-center mb-8">
-          <div 
-            className="flex items-center justify-center bg-green-500 rounded-full w-20 h-20"
-            style={{ transform: `rotate(${rotateAngle}deg)` }}
-          >
+          <div className="flex items-center justify-center bg-green-500 rounded-full w-20 h-20">
             <Check className="h-10 w-10 text-white" />
           </div>
         </div>
@@ -83,7 +74,7 @@ const WithdrawalSuccess = () => {
                 </div>
                 <div className="flex justify-between">
                   <span className="font-medium">Reference:</span>
-                  <span>TXN{Math.floor(Math.random() * 1000000000)}</span>
+                  <span>{transactionRef}</span>
                 </div>
               </>
             )}

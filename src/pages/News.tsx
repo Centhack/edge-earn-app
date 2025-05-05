@@ -3,72 +3,72 @@ import { useEffect } from "react";
 import MainLayout from "@/components/layout/MainLayout";
 import NewsCard from "@/components/news/NewsCard";
 
-const newsData = [
+const testimonialData = [
   {
     id: 1,
-    title: "Fed Signals Potential Rate Cuts as Inflation Eases",
-    source: "Financial Times",
+    title: "Successful Withdrawal Experience",
+    source: "John D.",
     date: "May 3, 2025",
-    summary: "Federal Reserve officials hinted at potential interest rate cuts later this year as inflation shows signs of slowing down to target levels, according to minutes from the latest policy meeting.",
-    image: "https://images.unsplash.com/photo-1610375461246-83df859d849d?q=80&w=1470&auto=format&fit=crop",
+    summary: "I was skeptical at first, but EarnEdge is legit! I successfully withdrew ₦50,000 to my bank account and it reflected instantly. Their platform is simple and effective.",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1470&auto=format&fit=crop",
     url: "#"
   },
   {
     id: 2,
-    title: "Tech Stocks Rally Amid Bullish Earnings Reports",
-    source: "The Wall Street Journal",
+    title: "Airtime Purchase Made Easy",
+    source: "Sarah M.",
     date: "May 2, 2025",
-    summary: "Major technology companies surpassed earnings expectations this quarter, driving a significant rally in tech stocks and pushing the Nasdaq to new heights.",
-    image: "https://images.unsplash.com/photo-1642543348354-c5975bf1956b?q=80&w=1632&auto=format&fit=crop",
+    summary: "I've been using EarnEdge for airtime top-ups, and it's been a game-changer. The rates are competitive, and the process is quick. Highly recommended for busy professionals!",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1632&auto=format&fit=crop",
     url: "#"
   },
   {
     id: 3,
-    title: "Global Markets React to New Trade Agreement",
-    source: "Bloomberg",
+    title: "Reliable Data Plans",
+    source: "Michael O.",
     date: "May 1, 2025",
-    summary: "Global markets showed positive movement following the announcement of a comprehensive trade agreement between major economies, potentially easing supply chain constraints.",
+    summary: "EarnEdge offers the most affordable data plans I've found. I purchased the 10GB plan for my business, and it lasted the entire period with excellent speed and coverage.",
     url: "#"
   },
   {
     id: 4,
-    title: "Crypto Market Recovers After Recent Regulatory Clarity",
-    source: "CoinDesk",
+    title: "Financial Freedom Through EarnEdge",
+    source: "Amaka J.",
     date: "April 30, 2025",
-    summary: "The cryptocurrency market saw a strong recovery after regulatory authorities provided clearer guidelines on digital asset trading and institutional investments.",
-    image: "https://images.unsplash.com/photo-1621761191319-c6fb62004040?q=80&w=1632&auto=format&fit=crop",
+    summary: "As a student, EarnEdge has been instrumental in helping me manage my finances. The withdrawal system is reliable, and I've recommended it to all my classmates.",
+    image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1632&auto=format&fit=crop",
     url: "#"
   },
   {
     id: 5,
-    title: "Housing Market Shows Signs of Cooling as Mortgage Rates Rise",
-    source: "CNBC",
+    title: "Best Customer Support Experience",
+    source: "Daniel T.",
     date: "April 29, 2025",
-    summary: "Recent data indicates a cooling housing market as mortgage rates continue to climb, potentially signaling the end of the pandemic-era housing boom.",
+    summary: "When I had an issue with my transaction, EarnEdge's support team was incredibly responsive. They resolved my problem within minutes. This level of service is rare!",
     url: "#"
   },
 ];
 
 const News = () => {
   useEffect(() => {
-    document.title = "News | EarnEdge";
+    document.title = "Testimonials | EarnEdge";
   }, []);
 
   return (
     <MainLayout>
       <div className="container px-4 py-8 md:px-8">
-        <h1 className="mb-6 text-2xl font-bold">Financial News</h1>
+        <h1 className="mb-6 text-2xl font-bold">User Testimonials</h1>
         
         <div className="space-y-6">
-          {newsData.map((news) => (
+          {testimonialData.map((testimonial) => (
             <NewsCard
-              key={news.id}
-              title={news.title}
-              source={news.source}
-              date={news.date}
-              summary={news.summary}
-              image={news.image}
-              url={news.url}
+              key={testimonial.id}
+              title={testimonial.title}
+              source={testimonial.source}
+              date={testimonial.date}
+              summary={testimonial.summary}
+              image={testimonial.image}
+              url={testimonial.url}
             />
           ))}
         </div>

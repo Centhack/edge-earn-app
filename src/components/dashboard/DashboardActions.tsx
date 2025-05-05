@@ -31,6 +31,15 @@ const DashboardActions = () => {
       case "History":
         navigate("/transaction-history");
         break;
+      case "Channel":
+        window.open("https://whatsapp.com/channel/0029Vb4RhUPKLaHvcM9dbc0w", "_blank");
+        break;
+      case "Airtime Top-up":
+        navigate("/airtime-topup");
+        break;
+      case "Data Top-up":
+        navigate("/data-topup");
+        break;
       default:
         toast.info(`${action} feature coming soon!`);
         break;
@@ -52,12 +61,12 @@ const DashboardActions = () => {
           </Button>
           
           <Button
-            onClick={() => handleAction("Loan")}
+            onClick={() => handleAction("Channel")}
             className="flex h-auto flex-col items-center justify-center gap-2 p-4"
             variant="outline"
           >
             <DollarSign className="h-6 w-6" />
-            <span>Loan</span>
+            <span>Channel</span>
           </Button>
           
           <Button
