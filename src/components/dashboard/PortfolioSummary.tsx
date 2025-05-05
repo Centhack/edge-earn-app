@@ -32,9 +32,6 @@ const PortfolioSummary = () => {
       <CardContent>
         <div>
           <h3 className="text-3xl font-bold">₦ {balance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</h3>
-          <div className="mt-1 flex items-center">
-            <span className="text-sm font-medium text-muted-foreground">Last updated: {new Date().toLocaleDateString()}</span>
-          </div>
         </div>
       </CardContent>
     </Card>
