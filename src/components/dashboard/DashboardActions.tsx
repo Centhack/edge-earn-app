@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/sonner";
@@ -11,11 +11,18 @@ import {
   Wifi,
   LogOut,
   Contact,
-  History
+  History,
+  Clock,
+  Radio
 } from "lucide-react";
 
 const DashboardActions = () => {
   const navigate = useNavigate();
+  const [balance, setBalance] = useState(() => {
+    // Get balance from localStorage or use default
+    const savedBalance = localStorage.getItem("earnedge_balance");
+    return savedBalance ? Number(savedBalance) : 145500;
+  });
 
   const handleAction = (action: string) => {
     switch(action) {
@@ -39,6 +46,21 @@ const DashboardActions = () => {
         break;
       case "Data Top-up":
         navigate("/data-topup");
+        break;
+      case "Minner":
+        if (balance <= 0) {
+          toast.success("Mining started! Your balance will be refilled to ₦145,500.00 in 24 hours.");
+          
+          // Set a timer to simulate mining for 24 hours (for demo, set to 10 seconds)
+          setTimeout(() => {
+            const newBalance = 145500;
+            localStorage.setItem("earnedge_balance", newBalance.toString());
+            window.dispatchEvent(new Event("balance-updated"));
+            toast.success("Mining complete! Your balance has been refilled to ₦145,500.00");
+          }, 10000); // In production, this would be 24 hours (86400000 ms)
+        } else {
+          toast.error("Mining is only available when your balance is ₦0.00");
+        }
         break;
       default:
         toast.info(`${action} feature coming soon!`);
@@ -65,7 +87,7 @@ const DashboardActions = () => {
             className="flex h-auto flex-col items-center justify-center gap-2 p-4"
             variant="outline"
           >
-            <DollarSign className="h-6 w-6" />
+            <Radio className="h-6 w-6" />
             <span>Channel</span>
           </Button>
           
@@ -107,11 +129,21 @@ const DashboardActions = () => {
 
           <Button
             onClick={() => handleAction("Logout")}
-            className="flex h-auto col-span-2 flex-col items-center justify-center gap-2 p-4"
+            className="flex h-auto flex-col items-center justify-center gap-2 p-4"
             variant="outline"
           >
             <LogOut className="h-6 w-6" />
             <span>Logout</span>
+          </Button>
+
+          <Button
+            onClick={() => handleAction("Minner")}
+            className="flex h-auto flex-col items-center justify-center gap-2 p-4"
+            variant={balance <= 0 ? "default" : "outline"}
+            disabled={balance > 0}
+          >
+            <Clock className="h-6 w-6" />
+            <span>Minner</span>
           </Button>
         </div>
       </CardContent>

@@ -1,7 +1,10 @@
 
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import MainLayout from "@/components/layout/MainLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
 
 interface Transaction {
   id: string;
@@ -13,46 +16,19 @@ interface Transaction {
 }
 
 const TransactionHistory = () => {
+  const navigate = useNavigate();
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   
   useEffect(() => {
-    // Mock user transaction data (only user's own transactions)
-    const mockTransactions = [
-      {
-        id: "TXN123456789",
-        type: "withdrawal",
-        amount: "15,000.00",
-        date: "2025-05-02",
-        time: "14:30:45",
-        status: "completed"
-      },
-      {
-        id: "TXN456789123",
-        type: "airtime",
-        amount: "2,000.00",
-        date: "2025-04-29",
-        time: "17:45:10",
-        status: "completed"
-      },
-      {
-        id: "TXN789123456",
-        type: "data",
-        amount: "3,500.00",
-        date: "2025-04-28",
-        time: "11:20:35",
-        status: "completed"
-      }
-    ] as Transaction[];
-    
-    setTransactions(mockTransactions);
+    // Get user transactions from localStorage
+    const userTransactions = JSON.parse(localStorage.getItem("earnedge_transactions") || "[]");
+    setTransactions(userTransactions);
   }, []);
   
   const getTypeIcon = (type: string) => {
     switch(type) {
       case "withdrawal":
         return "↓";
-      case "loan":
-        return "↑";
       case "airtime":
         return "✆";
       case "data":
@@ -61,11 +37,25 @@ const TransactionHistory = () => {
         return "-";
     }
   };
+
+  const handleGoBack = () => {
+    navigate(-1);
+  };
   
   return (
     <MainLayout>
       <div className="container px-4 py-8 md:px-8">
-        <h1 className="mb-6 text-2xl font-bold">Transaction History</h1>
+        <div className="flex items-center mb-6">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            onClick={handleGoBack}
+            className="mr-2"
+          >
+            <ArrowLeft className="h-5 w-5" />
+          </Button>
+          <h1 className="text-2xl font-bold">Transaction History</h1>
+        </div>
         
         <Card>
           <CardHeader>
@@ -82,7 +72,6 @@ const TransactionHistory = () => {
                     <div className="flex items-center gap-3">
                       <div className={`flex items-center justify-center w-8 h-8 rounded-full text-white ${
                         transaction.type === 'withdrawal' ? 'bg-red-500' : 
-                        transaction.type === 'loan' ? 'bg-green-500' : 
                         transaction.type === 'airtime' ? 'bg-blue-500' : 'bg-purple-500'
                       }`}>
                         {getTypeIcon(transaction.type)}
@@ -95,18 +84,11 @@ const TransactionHistory = () => {
                       </div>
                     </div>
                     <div className="text-right">
-                      <p className={`font-medium ${
-                        transaction.type === 'withdrawal' || 
-                        transaction.type === 'airtime' || 
-                        transaction.type === 'data' ? 'text-red-500' : 'text-green-500'
-                      }`}>
-                        {transaction.type === 'loan' ? '+ ' : '- '}₦{transaction.amount}
+                      <p className="font-medium text-red-500">
+                        - ₦{transaction.amount}
                       </p>
-                      <p className={`text-xs ${
-                        transaction.status === 'completed' ? 'text-green-500' : 
-                        transaction.status === 'pending' ? 'text-amber-500' : 'text-red-500'
-                      }`}>
-                        {transaction.status.charAt(0).toUpperCase() + transaction.status.slice(1)}
+                      <p className="text-xs text-green-500">
+                        Completed
                       </p>
                     </div>
                   </div>

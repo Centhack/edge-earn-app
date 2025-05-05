@@ -1,11 +1,12 @@
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import MainLayout from "@/components/layout/MainLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useNavigate } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 
 const Withdrawal = () => {
   const navigate = useNavigate();
@@ -28,10 +29,24 @@ const Withdrawal = () => {
     navigate("/verify-earn-id");
   };
 
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+
   return (
     <MainLayout>
       <div className="container px-4 py-8 md:px-8">
-        <h1 className="mb-6 text-2xl font-bold">Withdrawal Request</h1>
+        <div className="flex items-center mb-6">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            onClick={handleGoBack}
+            className="mr-2"
+          >
+            <ArrowLeft className="h-5 w-5" />
+          </Button>
+          <h1 className="text-2xl font-bold">Withdrawal Request</h1>
+        </div>
         
         <Card>
           <CardHeader>

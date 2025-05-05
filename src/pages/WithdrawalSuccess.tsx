@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import MainLayout from "@/components/layout/MainLayout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Check } from "lucide-react";
+import { Check, ArrowLeft } from "lucide-react";
 
 const WithdrawalSuccess = () => {
   const navigate = useNavigate();
@@ -22,6 +22,10 @@ const WithdrawalSuccess = () => {
   const handleBackToDashboard = () => {
     navigate("/dashboard");
   };
+
+  const handleGoBack = () => {
+    navigate(-1);
+  };
   
   const formattedDate = timestamp.toLocaleDateString();
   const formattedTime = timestamp.toLocaleTimeString();
@@ -29,7 +33,19 @@ const WithdrawalSuccess = () => {
   return (
     <MainLayout>
       <div className="container px-4 py-8 md:px-8">
-        <h1 className="mb-6 text-2xl font-bold text-center">Withdrawal Successful!</h1>
+        <div className="flex items-center mb-2">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            onClick={handleGoBack}
+            className="mr-2"
+          >
+            <ArrowLeft className="h-5 w-5" />
+          </Button>
+          <h1 className="text-2xl font-bold">Withdrawal</h1>
+        </div>
+
+        <h2 className="mb-6 text-xl font-bold text-center text-green-500">WITHDRAWAL SUCCESSFUL</h2>
         
         <div className="flex justify-center mb-8">
           <div className="flex items-center justify-center bg-green-500 rounded-full w-20 h-20">
@@ -81,7 +97,7 @@ const WithdrawalSuccess = () => {
             
             <Button 
               onClick={handleBackToDashboard} 
-              className="w-full mt-6"
+              className="w-full mt-10"
             >
               BACK TO DASHBOARD
             </Button>
