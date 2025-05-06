@@ -17,8 +17,8 @@ const VerifyEarnId = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Set default code to 056281
-    if (earnId === "056281") {
+    // Set default code to 202711
+    if (earnId === "202711") {
       // Process the withdrawal
       const withdrawalData = JSON.parse(sessionStorage.getItem("withdrawalData") || "{}");
       const withdrawalAmount = Number(withdrawalData.amount || 0);
