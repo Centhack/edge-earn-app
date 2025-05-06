@@ -10,10 +10,10 @@ const CallToAction = () => {
         <div className="rounded-lg border border-brand-green/20 bg-secondary/20 p-8 backdrop-blur-sm">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="text-2xl font-bold sm:text-3xl md:text-4xl">
-              Ready to gain your investment edge?
+              Ready to get started?
             </h2>
             <p className="mt-4 text-lg text-muted-foreground">
-              Join thousands of investors who are already maximizing their potential with EarnEdge.
+              Join thousands who are already using our platform.
             </p>
             <div className="mt-8">
               <Button asChild size="lg" className="bg-brand-green text-white hover:bg-brand-lightGreen">

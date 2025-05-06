@@ -4,26 +4,26 @@ import { TrendingUp, BarChart3, Newspaper, Shield } from "lucide-react";
 
 const features = [
   {
-    title: "Portfolio Tracking",
-    description: "Track all your investments in one place with real-time updates and performance metrics.",
+    title: "Tracking",
+    description: "Track all your activities in one place with real-time updates.",
     icon: <TrendingUp className="h-10 w-10 text-brand-green" />,
     route: "/dashboard"
   },
   {
-    title: "Market Analysis",
-    description: "Access comprehensive market data, charts, and trends to make informed investment decisions.",
+    title: "Analysis",
+    description: "Access comprehensive data, charts, and trends to make informed decisions.",
     icon: <BarChart3 className="h-10 w-10 text-brand-green" />,
     route: "/markets"
   },
   {
-    title: "Financial News",
-    description: "Stay updated with the latest financial news and analysis from trusted sources.",
+    title: "News",
+    description: "Stay updated with the latest news and analysis from trusted sources.",
     icon: <Newspaper className="h-10 w-10 text-brand-green" />,
     route: "/news"
   },
   {
-    title: "Secure Platform",
-    description: "Industry-leading security measures to protect your financial data and investments.",
+    title: "Security",
+    description: "Industry-leading security measures to protect your data.",
     icon: <Shield className="h-10 w-10 text-brand-green" />,
     route: "#"
   }
@@ -36,7 +36,7 @@ const FeaturesSection = () => {
         <div className="text-center">
           <h2 className="text-3xl font-bold sm:text-4xl">Powerful Features</h2>
           <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-            Everything you need to track, analyze, and optimize your investment portfolio.
+            Everything you need to track, analyze, and optimize your activities.
           </p>
         </div>
         

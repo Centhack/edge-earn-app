@@ -21,12 +21,12 @@ const HeroSection = () => {
             </div>
             
             <h1 className="mt-6 text-4xl font-bold leading-tight tracking-tight sm:text-5xl md:text-6xl">
-              Your Investment 
-              <span className="relative ml-2 text-brand-green">Edge</span>
+              Your Platform
+              <span className="relative ml-2 text-brand-green">Solution</span>
             </h1>
             
             <p className="mt-6 text-lg text-muted-foreground md:text-xl">
-              Track investments, analyze markets, and maximize your earning potential with our comprehensive financial platform.
+              Track activities, analyze data, and maximize your potential with our comprehensive platform.
             </p>
             
             <div className="mt-8 flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
@@ -37,8 +37,8 @@ const HeroSection = () => {
                 </Link>
               </Button>
               <Button asChild variant="outline" size="lg">
-                <Link to="/markets">
-                  Explore Markets
+                <Link to="/dashboard">
+                  Explore
                 </Link>
               </Button>
             </div>
@@ -47,7 +47,7 @@ const HeroSection = () => {
           <div className="relative flex justify-center">
             <img 
               src="/public/lovable-uploads/5351f2e7-c6b8-4837-a3c4-379bba971eb3.png" 
-              alt="EarnEdge Logo" 
+              alt="Logo" 
               className="h-64 w-64 animate-slide-up rounded-lg opacity-90 md:h-80 md:w-80"
             />
             

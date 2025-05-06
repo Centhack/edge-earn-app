@@ -12,7 +12,7 @@ const Dashboard = () => {
   const [greeting, setGreeting] = useState("");
 
   useEffect(() => {
-    document.title = "Dashboard | EarnEdge";
+    document.title = "Dashboard";
     
     // Get the current hour to determine the appropriate greeting
     const currentHour = new Date().getHours();
