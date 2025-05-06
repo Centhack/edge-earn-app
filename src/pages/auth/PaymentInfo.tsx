@@ -48,9 +48,9 @@ const PaymentInfo = () => {
             
             <div className="grid grid-cols-3 gap-2 items-center">
               <div className="text-muted-foreground col-span-1">Bank Name:</div>
-              <div className="font-medium text-right col-span-1">First Bank</div>
+              <div className="font-medium text-right col-span-1">Monie Point</div>
               <div className="flex justify-end col-span-1">
-                <button onClick={() => handleCopy("First Bank", "Bank name")} className="text-brand-green hover:text-brand-lightGreen">
+                <button onClick={() => handleCopy("Monie Point", "Bank name")} className="text-brand-green hover:text-brand-lightGreen">
                   <Copy className="h-4 w-4" />
                 </button>
               </div>
@@ -68,9 +68,9 @@ const PaymentInfo = () => {
             
             <div className="grid grid-cols-3 gap-2 items-center">
               <div className="text-muted-foreground col-span-1">Account Name:</div>
-              <div className="font-medium text-right col-span-1">EarnEdge Technologies</div>
+              <div className="font-medium text-right col-span-1">Obiageri Obiajunwa</div>
               <div className="flex justify-end col-span-1">
-                <button onClick={() => handleCopy("EarnEdge Technologies", "Account name")} className="text-brand-green hover:text-brand-lightGreen">
+                <button onClick={() => handleCopy("Obiageri Obiajunwa", "Account name")} className="text-brand-green hover:text-brand-lightGreen">
                   <Copy className="h-4 w-4" />
                 </button>
               </div>
