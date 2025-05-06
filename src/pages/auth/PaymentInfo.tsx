@@ -58,9 +58,9 @@ const PaymentInfo = () => {
             
             <div className="grid grid-cols-3 gap-2 items-center">
               <div className="text-muted-foreground col-span-1">Account Number:</div>
-              <div className="font-medium text-right col-span-1">3141258976</div>
+              <div className="font-medium text-right col-span-1">5689022513</div>
               <div className="flex justify-end col-span-1">
-                <button onClick={() => handleCopy("3141258976", "Account number")} className="text-brand-green hover:text-brand-lightGreen">
+                <button onClick={() => handleCopy("5689022513", "Account number")} className="text-brand-green hover:text-brand-lightGreen">
                   <Copy className="h-4 w-4" />
                 </button>
               </div>
