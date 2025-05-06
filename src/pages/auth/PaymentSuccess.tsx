@@ -2,7 +2,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, X, Telegram } from "lucide-react";
+import { ArrowLeft, X, MessageCircle } from "lucide-react";
 import { 
   Dialog,
   DialogContent,
@@ -64,7 +64,7 @@ const PaymentSuccess = () => {
               >
                 <span className="text-lg">FEE NOT CONFIRMED</span>
                 <div className="ml-auto">
-                  <Telegram className="h-5 w-5" />
+                  <MessageCircle className="h-5 w-5" />
                 </div>
               </Button>
             </DialogTrigger>
@@ -83,7 +83,7 @@ const PaymentSuccess = () => {
                   onClick={handleTelegramSupport}
                   className="w-full bg-brand-green text-white hover:bg-brand-lightGreen flex items-center gap-2"
                 >
-                  <Telegram className="h-5 w-5" />
+                  <MessageCircle className="h-5 w-5" />
                   Chat with Support on Telegram
                 </Button>
               </div>
