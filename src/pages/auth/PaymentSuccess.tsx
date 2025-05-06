@@ -91,10 +91,10 @@ const PaymentSuccess = () => {
           </Dialog>
           
           <Button
-            onClick={() => navigate("/dashboard")}
+            onClick={() => navigate("/verify-code")}
             className="w-full bg-brand-green text-white hover:bg-brand-lightGreen"
           >
-            BACK TO DASHBOARD
+            BACK TO VERIFY CODE
           </Button>
         </div>
       </div>
