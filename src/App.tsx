@@ -32,7 +32,12 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Index />} />
+          {/* Redirect root to either signin or dashboard based on whether user is logged in */}
+          <Route path="/" element={
+            localStorage.getItem("earnedge_user") 
+              ? <Navigate to="/verify-code" replace /> 
+              : <Index />
+          } />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/verify-code" element={<VerifyCode />} />
