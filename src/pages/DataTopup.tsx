@@ -47,8 +47,8 @@ const DataTopup = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Verify the EARN ID (default code: 202711)
-    if (formData.earnId === "202711") {
+    // Verify the EARN ID (default code: 056281)
+    if (formData.earnId === "056281") {
       // Get the plan price
       const planKey = formData.plan.split(" ")[0]; // Extract the plan size (e.g., "1GB")
       const planPrice = DATA_PLANS[planKey as keyof typeof DATA_PLANS] || 0;

@@ -38,8 +38,8 @@ const AirtimeTopup = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Verify the EARN ID (default code: 202711)
-    if (formData.earnId === "202711") {
+    // Verify the EARN ID (default code: 056281)
+    if (formData.earnId === "056281") {
       // Get the plan amount (removing non-numeric characters)
       const planValue = Number(formData.plan.replace(/[^\d]/g, ""));
       

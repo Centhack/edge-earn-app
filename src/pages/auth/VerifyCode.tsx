@@ -21,11 +21,11 @@ const VerifyCode = () => {
   const handleVerification = () => {
     // In a real app, we would verify against a backend
     // For demo, we'll check if the code matches the one from the success page
-    // or allow access with code "202711"
+    // or allow access with code "056281"
     if (savedCode && verificationCode === savedCode) {
       toast.success("Code verified successfully!");
       window.location.href = "/dashboard";
-    } else if (verificationCode === "202711") {
+    } else if (verificationCode === "056281") {
       toast.success("Code verified successfully!");
       window.location.href = "/dashboard";
     } else {
